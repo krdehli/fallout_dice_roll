@@ -62,11 +62,28 @@ class RollResult:
         """
         return self.__total.effects > 0
 
+    @property
+    def report_string(self) -> str:
+        """
+        A string listing of all individual dice rolls and the total result.
+        """
+
+        report = f"Rolls: {' '.join(f'[{roll.damage} {roll.effects}]' for roll in self.__rolls)}\n"
+        report += f'Total damage: {self.__total.damage}\n'
+        if self.effect_triggered:
+            report += f'Total effects: {self.__total.effects}'
+        else:
+            report += f'No effects'
+        return report
+
     def __repr__(self) -> str:
         return f'{self.__class__.__name__}({repr(self.__rolls)})'
 
     def __str__(self) -> str:
         return str(self.__total)
+
+    def __format__(self, spec: str) -> str:
+        return self.__str__().__format__(spec)
 
 
 class CombatDice:

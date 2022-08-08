@@ -1,7 +1,7 @@
 import sys
-from  combatdice import CombatDice
+from combatdice import CombatDice
 from utils import bounded_int
-from argparse import ArgumentParser, ArgumentTypeError
+from argparse import ArgumentParser
 
 def main():
     parser = ArgumentParser(
@@ -15,8 +15,7 @@ def main():
     )
     args = parser.parse_args()
 
-    print(CombatDice.roll(args.num_rolls))
-
+    print(CombatDice.roll(args.num_rolls).report_string)
     sys.exit()
 
 if __name__ == '__main__':

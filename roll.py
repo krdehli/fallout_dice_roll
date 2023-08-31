@@ -1,7 +1,8 @@
 import sys
+from argparse import ArgumentParser
 from combatdice import CombatDice
 from utils import bounded_int
-from argparse import ArgumentParser
+from common import add_common_arguments
 
 def main():
     parser = ArgumentParser(
@@ -13,9 +14,14 @@ def main():
         metavar='NUM_ROLLS',
         help='The given number of combat dice to roll'
     )
+    add_common_arguments(parser, 'history_file', 'out_format')
     args = parser.parse_args()
 
-    print(CombatDice.roll(args.num_rolls).report_string)
+    result = CombatDice.roll(args.num_rolls)
+    with open(args.history_file, 'a') as history:
+        history.write(f'{result.serialize()}\n')
+    print(result.report_string(args.out_format))
+    
     sys.exit()
 
 if __name__ == '__main__':

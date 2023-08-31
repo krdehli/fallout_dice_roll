@@ -1,5 +1,6 @@
 from typing import Callable
 from argparse import ArgumentTypeError
+import math
 
 def bounded_int(lower: int | None, upper: int | None) -> Callable[[str], int]:
     def unbounded(value: str) -> int:
@@ -42,3 +43,20 @@ def bounded_int(lower: int | None, upper: int | None) -> Callable[[str], int]:
         return upper_bounded
     else:
         return lower_and_upper_bounded
+    
+
+def find_nth(string: str, substring: str, n: int) -> int:
+    found = string.find(substring)
+    count = 1
+    while found >= 0 and count < n:
+        found = string.find(substring, found+len(substring))
+        count += 1
+    return found
+
+
+def repeat_to_fit(string: str, width: int) -> str:
+    return (string * math.ceil(width / len(string)))[:width]
+
+
+def replace_slice(string: str, new: str, start_idx: int, end_idx: int) -> str:
+    return string[:start_idx] + repeat_to_fit(new, end_idx - start_idx + 1) + string[end_idx + 1:]

@@ -18,7 +18,7 @@ commands can be found in the `docs` folder or by clicking the links in the table
 | [`roll.py`](docs/roll.md)       | Rolls a given number of combat dice                            |
 | [`convert.py`](docs/convert.md) | Converts a list of d6 rolls into their respective combat rolls |
 | [`history.py`](docs/history.md) | Displays your roll history                                     |
-| [`reroll.py`](docs/reorll.md)   | Rerolls chosen dice in a previous roll                         |
+| [`reroll.py`](docs/reroll.md)   | Rerolls chosen dice in a previous roll                         |
 
 You must run these scripts using a Python 3 interpreter. On most platforms, you can simply execute
 the scripts themselves and python will automatically be invoked, provided it is installed.

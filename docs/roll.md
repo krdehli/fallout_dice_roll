@@ -86,9 +86,10 @@ variable `FALLOUT_DICE_ROLL_HISTORY_FILE` to the desired filepath, which would b
 Specifies the number of combat dice to roll.  
 Must be a strictly positive integer.
 
-| Type | Position | Default |
-| ---- | -------- | ------- |
-| Int  | 0        | None    |
+**Type**: Integer  
+**Default**: None
+
+---
 
 ### --history_file
 Specifies the file in which the roll is recorded. If the file doesn't already exist, it is created.
@@ -97,45 +98,47 @@ To set the history file path for every invocation of the command, you can set th
 variable `FALLOUT_DICE_ROLL_HISTORY_FILE` to the desired filepath. Note however, that if the 
 `--history_file` option is specified, it supersedes the path defined in the environment variable. 
 
-| Type      | Position | Default           |
-| --------- | -------- | ----------------- |
-| Filepath  | Named    | ./roll_history    |
+**Type**: Filepath  
+**Default**: ./roll_history
 
-### --ascii
+---
+
+### --ascii, -a
 Specifies that the output should use ASCII compatible characters.
 
 You can set the environment variable `FALLOUT_DICE_ROLL_OUT_FORMAT` to "ascii" to set this as the
 default behaviour. 
 
-| Type      | Aliases | Position | Default           |
-| --------- | ------- | -------- | ----------------- |
-| Flag      | -a      | Named    | None              |
+**Type**: Flag  
+**Default**: None
 
-### --numeric
+---
+
+### --numeric, -n
 Specifies that the output should use numbers instead of symbols. The rolls will be 
 represented with self-explanatory pairs of numbers wrapped in square brackets.
 
 You can set the environment variable `FALLOUT_DICE_ROLL_OUT_FORMAT` to "numeric" to set this as the
 default behaviour. 
 
-| Type      | Aliases | Position | Default           |
-| --------- | ------- | -------- | ----------------- |
-| Flag      | -n      | Named    | None              |
+**Type**: Flag  
+**Default**: None
 
-### --uniode
+---
+
+### --unicode, -u
 Specifies that the output should use fancy unicode characters. This is the default behaviour.
 
 You can set the environment variable `FALLOUT_DICE_ROLL_OUT_FORMAT` to "unicode" to set this as the
 default behaviour, although this is redundant.
 
-| Type      | Aliases | Position | Default           |
-| --------- | ------- | -------- | ----------------- |
-| Flag      | -u      | Named    | None              |
+**Type**: Flag  
+**Default**: None
 
-### --help
+---
+
+### --help, h
 Show help message.
 
-| Type      | Aliases | Position | Default           |
-| --------- | ------- | -------- | ----------------- |
-| Flag      | -h      | Named    | None              |
-
+**Type**: Flag  
+**Default**: None

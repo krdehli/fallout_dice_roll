@@ -45,6 +45,18 @@ def bounded_int(lower: int | None, upper: int | None) -> Callable[[str], int]:
         return lower_and_upper_bounded
     
 
+def non_zero_int(value: str) -> int:
+    integer_value = 0
+    try:
+        integer_value = int(value)
+    except:
+        raise ArgumentTypeError(f'{value} is not a valid integer')
+    if integer_value == 0:
+        raise ArgumentTypeError(f'argument must be a non-zero integer')
+    
+    return integer_value
+    
+
 def find_nth(string: str, substring: str, n: int) -> int:
     found = string.find(substring)
     count = 1

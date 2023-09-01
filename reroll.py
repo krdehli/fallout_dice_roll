@@ -3,7 +3,7 @@ import os
 from argparse import ArgumentParser
 from combatdice import RollResult, Roll, CombatDice
 from common import add_common_arguments
-from utils import bounded_int
+from utils import bounded_int, non_zero_int
 from collections.abc import Iterable
 
 def reroll(result: RollResult, indeces: Iterable[int]) -> RollResult:
@@ -25,7 +25,7 @@ def main():
     )
     parser.add_argument(
         '-r','--roll_index',
-        type=int,
+        type=non_zero_int,
         metavar='ROLL_INDEX',
         help='Non-zero index of the roll to reroll. Negative indeces count backwards from the most recent roll.',
         default=-1
@@ -40,19 +40,23 @@ def main():
     except FileNotFoundError:
         pass
 
-    if args.roll_index == 0:
-        raise ValueError('roll_index cannot be zero')
-    
     idx = args.roll_index
     if idx > 0:
-        idx -= 1
+        idx -= 1        
 
-    result = reroll(history[idx], map(lambda i: i - 1, args.dice_indeces))
-    with open(args.history_file, 'a') as roll_history:
-        roll_history.write(f'{result.serialize()}\n')
-    print(result.report_string(args.out_format, map(lambda i: i - 1, args.dice_indeces)))
+    try:
+        result = reroll(history[idx], map(lambda i: i - 1, args.dice_indeces))
+        with open(args.history_file, 'a') as roll_history:
+            roll_history.write(f'{result.serialize()}\n')
+        print(result.report_string(args.out_format, map(lambda i: i - 1, args.dice_indeces)))
+        
+    except Exception as e:
+        parser.print_usage()
+        print(f'{os.path.basename(__file__)}: error: {e}')
+        sys.exit(2)
 
     sys.exit()
 
 if __name__ == '__main__':
     main()
+    
